@@ -1,33 +1,13 @@
 ---
-title: "Personal Website"
+title: "Home"
 ---
 
 
-__Look at how cool this plot is!__
-
-$$Y = \alpha \cdot \sin(X), \alpha = 0,0.1,0.2,...,3$$
+#VisuNet: an interactive tool for rule network visualization in R
 
 
-```{r, echo = FALSE, fig.align='center', warning=FALSE}
-library(tidyverse)
-cool_function <- function(x, alpha) return(sin(alpha*x))
-xs <- seq(0, pi*1.5, 0.005)
-ys <- cool_function(xs, 1)
-results <- data_frame(xs, ys, alpha = "1")
-for(alpha in seq(0,3, 0.1)){
-  results <- results %>% 
-    bind_rows(data_frame(
-      xs, 
-      ys = cool_function(xs, alpha),
-      alpha = as.character(alpha)
-    ))
-}
+VisuNet is an interactive tool that supports analysis of complex-rule based classifiers and helps explain their structure. VisuNet can be successfully apply to any classification problems, such as, for instance, a complex health-related decsion tasks. Rule networks can clearly identify main genes (metabolites, methylation sites, etc) and their expression levels predicting complex phenotypes, e.g. cancer, autism. VisuNet is implemented in R and uses the Shiny Gadgets attributes. The tool includes the rule network construction, filtration, visualization and customization.
 
-ggplot(results, aes(x = xs, y = ys, color = alpha)) + 
-  geom_line() + 
-  theme_bw() + 
-  theme(legend.position="none")
-```
 
 ```{r, echo = FALSE, fig.align='center', warning=FALSE}
 library(visNetwork)
@@ -35,7 +15,6 @@ nodes <- data.frame(id = 1:3)
 edges <- data.frame(from = c(1,2), to = c(1,3))
 
 visNetwork(nodes, edges)
-
 ```
 
 
