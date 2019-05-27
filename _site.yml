@@ -1,9 +1,14 @@
 name: "personal-website"
 output_dir: "."
 navbar:
+  logo:
+    image: images/VisuNet_logo.png
+    href: https://www.rstudio.com
   title: "VisuNet"
   left:
     - text: "Home"
       href: index.html
     - text: "About Me"
       href: about.html
+    - icon: fab fa-github
+      href: https://github.com/rstudio/distill
