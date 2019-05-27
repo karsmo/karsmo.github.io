@@ -1,8 +1,5 @@
 ---
 title: "Personal Website"
-output:
-  MyTemplates::my_html_format:
-    toc: true
 ---
 
 
