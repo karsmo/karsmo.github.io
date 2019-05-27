@@ -1,4 +1,8 @@
-
+---
+output:
+    html_document:
+    css: style.css
+---
 
 #VisuNet: an interactive tool for rule network visualization in R
 
