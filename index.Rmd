@@ -1,6 +1,3 @@
----
-title: "Home"
----
 
 
 #VisuNet: an interactive tool for rule network visualization in R
