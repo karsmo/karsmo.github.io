@@ -13,7 +13,10 @@ output:
 VisuNet is an interactive tool that supports analysis of complex rule-based classifiers and helps explain their structure. VisuNet can be successfully apply to any classification problems, such as, for instance, a complex health-related decsion tasks. Rule networks can clearly identify main genes (metabolites, methylation sites, etc) and their expression levels predicting complex phenotypes, e.g. cancer, autism. VisuNet is implemented in R and uses the Shiny Gadgets attributes. The tool includes the rule network construction from rule-based models, filtration, visualization and customization. VisuNet is available on  [GitHub](https://github.com/komorowskilab/VisuNet.git)
 
 
+
 ### Rule network construction
+
+***
 
 A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in rules, ie. features with their values occurring in the rules, and an edge connects two nodes if the corresponding conjuncts occur in the same rule. 
 <center>
@@ -24,9 +27,14 @@ A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in
 
 ### Installation
 
+***
 
+```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
+devtools::install_github("komorowskilab/VisuNet")
+```
 
 ### Example
+***
 
 ```{r, echo = FALSE, fig.align='center', warning=FALSE}
 library(visNetwork)
