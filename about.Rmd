@@ -4,3 +4,19 @@ output:
     html_document:
       css: style.css
 ---
+
+***
+
+### Input format
+ 
+***
+
+### Quick run
+
+***
+
+### The interface
+
+***
+
+### Rule network customization
