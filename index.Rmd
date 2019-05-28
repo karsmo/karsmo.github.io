@@ -53,7 +53,7 @@ vis_out = visunet(autcon_ruleset, type = 'L')
 ```
 
 
-```{r, echo = TRUE, fig.align='center', warning=FALSE}
+```{r, echo = FALSE, fig.align='center', warning=FALSE, fig.cap='Sample rule networkfrom VisuNet'}
 vis_out = readRDS('data/visunet_out.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges)%>% 
   visOptions(selectedBy = list(variable = "group" , multiple = TRUE, main = "Select by decision", style = 'width: 200px; height: 30px;
