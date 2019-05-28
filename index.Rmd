@@ -15,14 +15,19 @@ VisuNet is an interactive tool that supports analysis of complex rule-based clas
 
 ### Rule network construction
 
+A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in rules, ie. features with their values occurring in the rules, and an edge connects two nodes if the corresponding conjuncts occur in the same rule. 
+
 <center>
-![](images/Rule-network_contruction.png){width=30% }
+![Rule network construction from rule](images/Rule-network_contruction.png){width=30% }
 </center>
+
+
+
 ### Installation
 
 
 
-###Example
+### Example
 
 ```{r, echo = FALSE, fig.align='center', warning=FALSE}
 library(visNetwork)
