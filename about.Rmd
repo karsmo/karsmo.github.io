@@ -11,6 +11,9 @@ output:
  
 ***
 
+
+VisuNet supports any rule-based classifier in the supported input format.
+
 ### Quick run
 
 ***

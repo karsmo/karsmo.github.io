@@ -24,7 +24,7 @@ A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in
 
 
 ```{r old-figure-label, echo = FALSE, message=FALSE, fig.align='center', fig.cap='Rule network construction from the rule', out.width='0.95\\linewidth', fig.pos='H'}
-knitr::include_graphics("images/Rule-network_contruction2.png")
+knitr::include_graphics("/images/Rule-network_contruction2.png")
 ```
 
 ### Installation
@@ -57,7 +57,7 @@ vis_out = visunet(autcon_ruleset, type = 'L')
 
 
 
-```{r, echo = FALSE,  fig.align='center', warning=FALSE, fig.cap='Sample rule network for a autistic and non-autistic young males classifier from VisuNet'}
+```{r, echo = FALSE,  fig.align='center', warning=FALSE, fig.cap='Sample rule network for a autistic and non-autistic young males classifier from VisuNet (for min Support = 17 and min Accuracy = 88%)'}
 vis_out = readRDS('data/visunet_out.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges)%>% 
   visLayout(randomSeed = 123) %>%
