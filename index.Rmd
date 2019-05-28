@@ -25,7 +25,7 @@ A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in
 
 
 ```{r, echo = FALSE, message=FALSE, fig.align='center', fig.cap='Rule network construction from the rule', out.width='0.95'}
-knitr::include_graphics("Rule-network_contruction2.png")
+knitr::include_graphics("https://github.com/karsmo/karsmo.github.io/blob/master/images/Rule-network_contruction2.png")
 ```
 
 ### Installation
