@@ -4,8 +4,9 @@ output:
     html_document:
       css: style.css
 ---
-
-![VisuNet_logo](images/VisuNet_logo.png){width=50% }
+<center>
+![](images/VisuNet_logo.png){width=50% }
+</center>
 
 ***
 
