@@ -3,6 +3,8 @@ title: "VisuNet: an interactive tool for rule network visualization from rule-ba
 output:
     html_document:
       css: style.css
+bibliography: VisuNet_bib.bib
+link-citations: yes
 ---
 <center>
 ![](images/VisuNet_logo.png){width=30% }
@@ -40,6 +42,9 @@ devtools::install_github("komorowskilab/VisuNet")
 
 ***
 
+The gene expression data for autistic and non-autistic young males uses in the example was obtained from @RN1. The rule-based classifier was created using [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) [see @RN2].
+
+
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
 require(VisuNet)
 
@@ -51,6 +56,7 @@ data(autcon_ruleset)
 #Remember to click DONE once you finished your work with VisuNet
 vis_out = visunet(autcon_ruleset, type = 'L')
 ```
+
 
 
 ```{r, echo = FALSE,  fig.align='center', warning=FALSE, fig.cap='Sample rule network for a autistic and non-autistic young males classifier from VisuNet'}
@@ -65,3 +71,6 @@ visNetwork(nodes = vis_out$nodes, edges = vis_out$edges)%>%
                                border:none;
                                outline:none;'))
 ```
+
+
+### References
