@@ -53,7 +53,7 @@ vis_out = visunet(autcon_ruleset, type = 'L')
 ```
 
 
-```{r, echo = FALSE,  warning=FALSE, fig.cap='Sample rule network for a classifier of autistic and non-autistic young males from VisuNet'}
+```{r, echo = FALSE,  fig.align='center', warning=FALSE, fig.cap='Sample rule network for a classifier of autistic and non-autistic young males from VisuNet'}
 vis_out = readRDS('data/visunet_out.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges)%>% 
   visLayout(randomSeed = 123) %>%
