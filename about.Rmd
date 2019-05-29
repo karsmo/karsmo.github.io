@@ -3,6 +3,8 @@ title: "How to work with VisuNet?"
 output:
     html_document:
       css: style.css
+      theme:  cerulean
+      highlight: pygments
 ---
 
 ***
