@@ -322,14 +322,14 @@ $(document).ready(function () {
 <p>VisuNet is available for any rule-based classifier in supported data frame formats.</p>
 <div id="line-by-line-format" class="section level4">
 <h4>‘Line by line’ format</h4>
-<p>Data should be expressed as data frame and needs to contain the following columns:</p>
+<p>Data should be expressed as a data frame and needs to contain the following columns:</p>
 <ul>
-<li>FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, factor</li>
-<li>DECISION - the right hand side of the rule corresponds to decision value, factor</li>
-<li>ACC_RHS - the rule accuracy, numeric</li>
-<li>SUPP_RHS - the rule support, numeric</li>
+<li>FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor</li>
+<li>DECISION - the right hand side of the rule corresponds to decision value, type factor</li>
+<li>ACC_RHS - the rule accuracy, type numeric</li>
+<li>SUPP_RHS - the rule support, type numeric</li>
 </ul>
-<p>A p-value (‘PVAL’) calumn is not obligatory.</p>
+<p>A p-value (‘PVAL’) column is not obligatory.</p>
 <table class="table table-striped" style="width: auto !important; ">
 <caption>
 Sample ‘line by line’ data frame
@@ -424,13 +424,11 @@ vis_out = visunet(rules, type = &#39;L&#39;)</code></pre>
 </div>
 <div id="r.rosetta-output" class="section level4">
 <h4>R.ROSETTA output</h4>
-<p>Rule data frame that is the output of R.ROSETTA can be directly run in VisuNet. See <strong>?rosetta</strong> from the <strong>R.ROSETTA</strong> package for details.</p>
-<p>The R.ROSETTA output format can be use with the option: <code>type = 'RDF</code></p>
-<pre class="r"><code>resultsRos &lt;- rosetta(autcon)
+<p>The rules data frame that is the output of R.ROSETTA can be directly run in VisuNet. See <strong>?rosetta</strong> from the <a href="https://github.com/komorowskilab/R.ROSETTA.git">R.ROSETTA</a> package for details.</p>
+<p>The R.ROSETTA output format can be use with the option: <code>type = 'RDF</code> and this is the default variable.</p>
+<pre class="r"><code>#the rule-based model construction using R.ROSETTA
+resultsRos &lt;- rosetta(autcon)
 vis_out = visunet(resultsRos$main, type = &#39;RDF&#39;)</code></pre>
-</div>
-<div id="rgui-rosetta-output" class="section level4">
-<h4>RGUI ROSETTA output</h4>
 </div>
 </div>
 <div id="quick-run" class="section level3">

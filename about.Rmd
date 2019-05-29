@@ -16,14 +16,14 @@ VisuNet is available for any rule-based classifier in supported data frame forma
 
 #### 'Line by line' format
 
-Data should be expressed as data frame and needs to contain the following columns:
+Data should be expressed as a data frame and needs to contain the following columns:
 
-* FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, factor 
-* DECISION - the right hand side of the rule corresponds to decision value, factor
-* ACC_RHS - the rule accuracy, numeric 
-* SUPP_RHS - the rule support, numeric
+* FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor 
+* DECISION - the right hand side of the rule corresponds to decision value, type factor
+* ACC_RHS - the rule accuracy, type numeric 
+* SUPP_RHS - the rule support, type numeric
 
-A p-value ('PVAL') calumn is not obligatory.
+A p-value ('PVAL') column is not obligatory.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE, results='asis'}
 library(VisuNet)
@@ -35,7 +35,7 @@ kable(autcon_ruleset[4:6,], format="html",  caption = "Sample 'line by line' dat
 
 
 You can use 'line by line' format with the option:
-``` type = 'L```
+`type = 'L`
 
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
@@ -45,23 +45,25 @@ vis_out = visunet(rules, type = 'L')
 
 #### R.ROSETTA output
 
-Rule data frame that is the output of R.ROSETTA can be directly run in VisuNet. See **?rosetta** from the **R.ROSETTA** package for details.
+The rules data frame that is the output of R.ROSETTA can be directly run in VisuNet. See **?rosetta** from the [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) package for details.
 
 The R.ROSETTA output format can be use with the option:
-``` type = 'RDF```
+`type = 'RDF` and this is the default variable.
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
+#the rule-based model construction using R.ROSETTA
 resultsRos <- rosetta(autcon)
 vis_out = visunet(resultsRos$main, type = 'RDF')
 ```
 
-#### RGUI ROSETTA output
-
-
 
 ### Quick run
 
+
 ***
+
+
+
 
 ### The interface
 

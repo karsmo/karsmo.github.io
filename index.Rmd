@@ -62,7 +62,7 @@ vis_out = visunet(autcon_ruleset, type = 'L')
 
 ```{r, echo = FALSE,  fig.align='center', warning=FALSE, fig.cap='Sample rule network for a autistic and non-autistic young males classifier from VisuNet (constructed for min Support=17 and min Accuracy=88%)'}
 vis_out = readRDS('data/visunet_out.RDS')
-visNetwork(nodes = vis_out$nodes, edges = vis_out$edges)%>% 
+visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
   visLayout(randomSeed = 123) %>%
   visInteraction(hover = TRUE, navigationButtons = TRUE) %>%
   visOptions(selectedBy = list(variable = "group" , multiple = TRUE, main = "Select by decision", style = 'width: 200px; height: 30px;
