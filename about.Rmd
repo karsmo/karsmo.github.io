@@ -9,8 +9,6 @@ output:
 
 ### Input format
  
-***
-
 
 VisuNet is available for any rule-based classifier in supported data frame formats.
 
@@ -39,8 +37,8 @@ You can use 'line by line' format with the option:
 
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
-rules = data(autcon_ruleset)
-vis_out = visunet(rules, type = 'L')
+rules <- data(autcon_ruleset)
+vis_out <- visunet(rules, type = 'L')
 ```
 
 #### R.ROSETTA output
@@ -53,13 +51,12 @@ The R.ROSETTA output format can be use with the option:
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
 #the rule-based model construction using R.ROSETTA
 resultsRos <- rosetta(autcon)
-vis_out = visunet(resultsRos$main, type = 'RDF')
+vis_out <- visunet(resultsRos$main, type = 'RDF')
 ```
 
-
+***
 ### Run VisuNet
 
-***
 
 VisuNet is an R package 
 
@@ -72,21 +69,64 @@ data(autcon_ruleset)
 
 #Run VisuNet
 #Remember to click DONE once you finished your work with VisuNet
-vis_out = visunet(autcon_ruleset, type = 'L')
+vis_out <- visunet(autcon_ruleset, type = 'L')
 ```
 
-
+***
 ### The interface
 
+
+
 ***
-
-
 ### VisuNet output
 
+
+
 ***
-
-
 ### Rule network customization
 
-***
-Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties according to our needs, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limit to the existing variables in a rule network object, but we can add a new one that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
+
+Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limited to the existing variables in a rule network object, but we can add new ones that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
+
+#### Nodes customization - example
+
+We identified 11 genes previously reported in databases of autism associations: [SFARI](https://gene.sfari.org/), [AutDB](http://autism.mindspec.org/autdb/Welcome.do) and [ASD](http://asd.princeton.edu). We would like to mark that genes as stars. The example shows how to do this:
+
+```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
+#genes reported in databases of autism associations
+aut_genes <- c('TSPOAP1', 'COX2','NCS1','RHPN1','FLRT2',
+              'BAHD1','NCKAP5L','PPOX', 'NGR2',
+              'ATXN8OS','DEPDC1')
+
+#create the new variable that contains nodes information for 'all' decisions
+nodes_RNO <- vis_out$all$nodes
+
+#create the new vector of variables: shape. 'dot' is the default shape of nodes
+nodes_RNO$shape <- rep('dot', length(nodes_RNO$label))
+
+#mark selected genes as stars using the label attribute 
+nodes_RNO$shape[which(as.character(nodes_RNO$label) %in% aut_genes)] <- 'star'
+
+#create the node object list
+nodesL <- list(nodes = nodes_RNO,CustCol =  c('shape'))
+
+#rerun VisuNet with a new shape of nodes
+vis_out2 <- visunet(rules, CustObjectNodes = nodesL)
+```
+
+`CustObjectNodes` is a list that contains the customized VisuNet object for nodes: `nodes` and vector of column names that were changed/added to the object: `CustCol`.
+
+
+```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet (constructed for min Support=17 and min Accuracy=88%)'}
+vis_out <- readRDS('data/visunet_out_nodes.RDS')
+visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
+  visLayout(randomSeed = 123) %>%
+  visInteraction(hover = TRUE, navigationButtons = TRUE) %>%
+  visOptions(selectedBy = list(variable = "group" , multiple = TRUE, main = "Select by decision", style = 'width: 200px; height: 30px;
+                                                                padding-left: 80px;
+                               font-size: 15px;
+                               color: black;
+                               border:none;
+                               outline:none;'))
+```
+#### Edges customization - example
