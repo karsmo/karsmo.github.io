@@ -431,16 +431,32 @@ resultsRos &lt;- rosetta(autcon)
 vis_out = visunet(resultsRos$main, type = &#39;RDF&#39;)</code></pre>
 </div>
 </div>
-<div id="quick-run" class="section level3">
-<h3>Quick run</h3>
+<div id="run-visunet" class="section level3">
+<h3>Run VisuNet</h3>
 <hr />
+<p>VisuNet is an R package</p>
+<pre class="r"><code>require(VisuNet)
+
+#Sample rule set for a classifier of autistic and non-autistic young males
+#&#39;Line by line&#39; data type
+data(autcon_ruleset)
+
+#Run VisuNet
+#Remember to click DONE once you finished your work with VisuNet
+vis_out = visunet(autcon_ruleset, type = &#39;L&#39;)</code></pre>
 </div>
 <div id="the-interface" class="section level3">
 <h3>The interface</h3>
 <hr />
 </div>
+<div id="visunet-output" class="section level3">
+<h3>VisuNet output</h3>
+<hr />
+</div>
 <div id="rule-network-customization" class="section level3">
 <h3>Rule network customization</h3>
+<hr />
+<p>Rule networks are constructed using a <a href="https://github.com/datastorm-open/visNetwork">visNetwork</a> package that enable to add/change node and edge properties according to our needs, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limit to the existing variables in a rule network object, but we can add a new one that are implemented in <a href="https://github.com/datastorm-open/visNetwork">visNetwork</a>. See <strong>?visNodes</strong> and <strong>?visEdges</strong> for a full list of available options.</p>
 </div>
 
 

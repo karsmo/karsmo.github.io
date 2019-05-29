@@ -57,16 +57,36 @@ vis_out = visunet(resultsRos$main, type = 'RDF')
 ```
 
 
-### Quick run
-
+### Run VisuNet
 
 ***
 
+VisuNet is an R package 
 
+```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
+require(VisuNet)
+
+#Sample rule set for a classifier of autistic and non-autistic young males
+#'Line by line' data type
+data(autcon_ruleset)
+
+#Run VisuNet
+#Remember to click DONE once you finished your work with VisuNet
+vis_out = visunet(autcon_ruleset, type = 'L')
+```
 
 
 ### The interface
 
 ***
 
+
+### VisuNet output
+
+***
+
+
 ### Rule network customization
+
+***
+Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties according to our needs, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limit to the existing variables in a rule network object, but we can add a new one that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
