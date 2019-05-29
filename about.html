@@ -322,17 +322,22 @@ $(document).ready(function () {
 <p>VisuNet is available for any rule-based classifier in supported data frame formats.</p>
 <div id="line-by-line-format" class="section level4">
 <h4>‘Line by line’ format</h4>
-<p>Data frame contains Required columns are:</p>
+<p>Data should be expressed as data frame and needs to contain the following columns:</p>
 <ul>
-<li>FEATURES</li>
-<li>DECISION</li>
-<li>ACC_RHS</li>
-<li>SUPP_RHS</li>
+<li>FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, factor</li>
+<li>DECISION - the right hand side of the rule corresponds to decision value, factor</li>
+<li>ACC_RHS - the rule accuracy, numeric</li>
+<li>SUPP_RHS - the rule support, numeric</li>
 </ul>
 <p>A p-value (‘PVAL’) calumn is not obligatory.</p>
 <table class="table table-striped" style="width: auto !important; ">
+<caption>
+Sample ‘line by line’ data frame
+</caption>
 <thead>
 <tr>
+<th style="text-align:left;">
+</th>
 <th style="text-align:left;">
 FEATURES
 </th>
@@ -353,41 +358,10 @@ PVAL
 <tbody>
 <tr>
 <td style="text-align:left;">
-ZSCAN18=1,NPR2=2
+4
 </td>
 <td style="text-align:left;">
-control
-</td>
-<td style="text-align:right;">
-0.98521
-</td>
-<td style="text-align:right;">
-19
-</td>
-<td style="text-align:right;">
-5.20e-06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-NCKAP5L=1,234817_at=1
-</td>
-<td style="text-align:left;">
-control
-</td>
-<td style="text-align:right;">
-0.97368
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-1.45e-05
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-MAP7=3,ATXN8OS=1
+NPR2=2,CAPS2=3
 </td>
 <td style="text-align:left;">
 control
@@ -396,22 +370,64 @@ control
 1.00000
 </td>
 <td style="text-align:right;">
-18
+17
 </td>
 <td style="text-align:right;">
-1.45e-05
+3.97e-05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+MAP7=2,COX2=3
+</td>
+<td style="text-align:left;">
+autism
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+6.77e-05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+NCKAP5L=1,PPOX=1
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+0.95119
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+6.89e-05
 </td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>rules = (read.csv2(&#39;LbL.txt&#39;, sep=&#39;\t&#39;, header = FALSE, col.names = c(&#39;FEATURES&#39;, &#39;DECISION&#39;, &#39;ACC_RHS&#39;, &#39;SUPP_RHS&#39;),stringsAsFactors=FALSE))
-rules$ACC_RHS = as.numeric(rules$ACC_RHS)
-rules$SUPP_RHS = as.numeric(rules$SUPP_RHS)
-
-vis_out = visunet(rules, &#39;L&#39;)</code></pre>
+<p>You can use ‘line by line’ format with the option: <code>type = 'L</code></p>
+<pre class="r"><code>rules = data(autcon_ruleset)
+vis_out = visunet(rules, type = &#39;L&#39;)</code></pre>
 </div>
 <div id="r.rosetta-output" class="section level4">
 <h4>R.ROSETTA output</h4>
+<p>Rule data frame that is the output of R.ROSETTA can be directly run in VisuNet. See <strong>?rosetta</strong> from the <strong>R.ROSETTA</strong> package for details.</p>
+<p>The R.ROSETTA output format can be use with the option: <code>type = 'RDF</code></p>
+<pre class="r"><code>resultsRos &lt;- rosetta(autcon)
+vis_out = visunet(resultsRos$main, type = &#39;RDF&#39;)</code></pre>
 </div>
 <div id="rgui-rosetta-output" class="section level4">
 <h4>RGUI ROSETTA output</h4>
