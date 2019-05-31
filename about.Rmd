@@ -33,7 +33,7 @@ A p-value ('PVAL') column is not obligatory.
 library(VisuNet)
 library(knitr)
 library("kableExtra")
-kable(autcon_ruleset[4:6,], format="html",  caption = "Sample 'line by line' data frame") %>%
+kable(autcon_ruleset[4:6,], format="html",  caption = "The sample 'line by line' data frame") %>%
   kable_styling(bootstrap_options = "striped", full_width = F, position = "left")
 ```
 
@@ -63,7 +63,6 @@ vis_out <- visunet(resultsRos$main, type = 'RDF')
 ***
 # Run VisuNet
 
-
 VisuNet is an R package 
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
@@ -86,7 +85,7 @@ vis_out <- visunet(autcon_ruleset, type = 'L')
 ***
 # VisuNet output
 
-
+The VisuNet output comtains
 
 ***
 # Rule network customization
