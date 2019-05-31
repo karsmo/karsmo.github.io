@@ -6,6 +6,10 @@ output:
       fig_caption: yes
       theme: cerulean
       highlight: pygments
+      toc: true
+      toc_float:
+        collapsed: true
+      toc_depth: 3
 bibliography: VisuNet_bib.bib
 link-citations: yes
 ---
@@ -19,7 +23,7 @@ VisuNet is an interactive tool that supports analysis of complex rule-based clas
 
 
 ***
-### Rule network construction
+# Rule network construction
 
 
 
@@ -33,7 +37,7 @@ knitr::include_graphics("images/Rule-network_contruction2.png")
 ```
 
 ***
-### Installation
+# Installation
 
 
 
@@ -43,7 +47,7 @@ devtools::install_github("komorowskilab/VisuNet")
 
 ***
 
-### Example
+# Example
 
 
 
@@ -78,4 +82,4 @@ visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>%
 ```
 
 ***
-### References
+# References
