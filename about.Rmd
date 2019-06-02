@@ -13,12 +13,12 @@ output:
 
 ***
 
-# Input format
+# Input formats {#InputFormats}
  
 
 VisuNet is available for any rule-based classifier in supported data frame formats.
 
-## 'Line by line' format
+## 'Line by line' format {#LbL}
 
 Data should be expressed as a data frame and needs to contain the following columns:
 
@@ -47,7 +47,7 @@ rules <- data(autcon_ruleset)
 vis_out <- visunet(rules, type = 'L')
 ```
 
-## R.ROSETTA output
+## R.ROSETTA data frame {#RDF}
 
 The rules data frame that is the output of R.ROSETTA can be directly run in VisuNet. See **?rosetta** from the [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) package for details.
 
@@ -63,7 +63,7 @@ vis_out <- visunet(resultsRos$main, type = 'RDF')
 ***
 # Run VisuNet
 
-VisuNet is an R package 
+VisuNet is an R package and it is implemented as  [Shiny Gadgets](https://shiny.rstudio.com/articles/gadgets.html), what enable to run VisuNet as an R function, while the rule set is an argument. 
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
 require(VisuNet)
@@ -77,6 +77,27 @@ data(autcon_ruleset)
 vis_out <- visunet(autcon_ruleset, type = 'L')
 ```
 
+The available ´visunet´ parameters are:
+
+* `ruleSet`  - the set of rules in one of available structure: [Input formats](#InputFormats)
+* `type` - character string specifying the type of the input data. Two types implemented are "RDF" - the R.ROSETTA output (see  [R.Rosetta format](#RDF)), "L" - "Line by line" file format (see ['line by line' format](#Lbl)) The default is "RDF"
+* `NodeColorType` - character string specifying the color of nodes: 
+    * `"DL"` - feature discretization levels, option is available for data discretized into three levels: 1 (yellow), 2 (grey) and 3 (blue). In the case of the gene expression, data dicretization levels correpond to: 1 - undeexpressed gene, 2 - no change gene expression and 3 - overexpressed gene.
+    * `"A"` - color of nodes defined by the mean accuracy value for the node: dark orange - high accuracy value, ligth orange - low accuracy value. 
+
+`CustObjectNodes` and `CustObjectEdges` parameters are optional and can be used when the [rule network customization](#RNCust) is needed. 
+* `CustObjectNodes` - a list that contains customised VisuNet output for nodes. The list needs to contain two variables:
+     *`nodes` - customized VisuNet output for nodes
+     * `CustCol` - names of variables added/changed in the VisuNet output for nodes.
+See [Nodes customization](#CustNodes) for details.
+* `CustObjectEdges` - a list that contains customised VisuNet output for edges. The list needs to contain two variables:
+     *`edges` - customized VisuNet output for edges
+     * `CustCol` - names of variables added/changed in the VisuNet output for edges. 
+See [Edges customization](#CustEdges) for details.
+
+
+
+
 ***
 # The interface
 
@@ -85,15 +106,45 @@ vis_out <- visunet(autcon_ruleset, type = 'L')
 ***
 # VisuNet output
 
-The VisuNet output comtains
+The VisuNet output is a set of lists corresponds to one decision variable plus one extra list for combined decision 'all'.
+The lists contain information required to reproduce rule networks, i.e. data frames for `nodes`, `edges` and `NodeRulesSetPerNode` - a list that shows rules for each node.
+Data frames for nodes and edges incorporate essential variables by a [visNetwork](https://github.com/datastorm-open/visNetwork) package and additional variables that describe the quality of the node/edge obtained from the rules.
+
+
+Structure of the data frame for nodes:
+ 
+* `id` - unique node id, according to the attribute value and their value from the left-hand side of the rule set
+* `label` - the attribute variable without the '=value' part from the left-hand side of the rule set
+* `DiscState` - the attribute value
+* `color.background`  - the node color, see **color nodes section** for details
+* `value` - the node size
+* `color.border` - the color of node border
+* `meanAcc` - the mean accuracy value from all rules that contain the node
+* `meanSupp` - the mean support value from all rules that contain the node
+* `NRules`  - the number of rules that contain the node
+* `PrecRules` - fraction of rules that contain the node
+* `NodeConnection` - the total connection value obtains from the rules that contain the node
+* `title` - information visible on the tooltip
+* `group` -  the decision variable that occurs the most frequently (>50%) in rules associated with the node, otherwise `group` contains all comma-separated decision variables corresponds to rules associated with the node. `group`  defines  the content of the 'Select by decision' drop-down box.
+
+Structure of the data frame for edges:
+
+* `from`, `to` -  the pair of nodes that create the edge       
+* `conn`  - the connection variable obtained from the edge associated rules.
+* `connNorm`  - the connection variable normalized addcorid to the maximum connection variable in the rule network
+* `label2` - the edge id
+* `color` - the edge color                                                                          
+* `title` - information visible on the tooltip
+* `width` - the edge width, defined according to the normalized connection value
+
 
 ***
-# Rule network customization
+# Rule network customization {#RNCust}
 
 
 Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limited to the existing variables in a rule network object, but we can add new ones that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
 
-## Nodes customization
+## Nodes customization {#CustNodes}
 
 We identified 11 genes previously reported in databases of autism associations: [SFARI](https://gene.sfari.org/), [AutDB](http://autism.mindspec.org/autdb/Welcome.do) and [ASD](http://asd.princeton.edu). We would like to mark that genes as stars. The example shows how to do this:
 
@@ -137,7 +188,7 @@ visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>%
 ```
 
 
-## Edges customization
+## Edges customization {#CustEdges}
 
 Let's assume that COX2 controls MAP7 and we would like to show the edge direction on the rule network:
 
@@ -160,7 +211,7 @@ vis_out3 <- visunet(autcon_ruleset, type = 'L', CustObjectNodes = nodesL, CustOb
 ```
 
 We are able to rerun VisuNet using customized object for edges by providing the original rule set and a list `CustObjectEdges` that contains the customized VisuNet object for edges. 
-`CustObjectEdges` includes the customized object for edgess: `edges` and a vector of column names that were changed/added to the object: `CustCol`. 
+`CustObjectEdges` includes the customized object for edges: `edges` and a vector of column names that were changed/added to the object: `CustCol`. 
 
 We can rerun VisuNet using both customized objects: `CustObjectEdges` and `CustObjectNodes`.  
 
