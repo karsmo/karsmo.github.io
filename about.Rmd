@@ -9,7 +9,10 @@ output:
       toc_float:
         collapsed: true
       toc_depth: 3
+      fig_caption: yes
 ---
+
+
 
 ***
 
@@ -22,12 +25,12 @@ VisuNet is available for any rule-based classifier in supported data frame forma
 
 Data should be expressed as a data frame and needs to contain the following columns:
 
-* FEATURES - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor 
-* DECISION - the right hand side of the rule corresponds to decision value, type factor
-* ACC_RHS - the rule accuracy, type numeric 
-* SUPP_RHS - the rule support, type numeric
+* `FEATURES` - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor 
+* `DECISION` - the right hand side of the rule corresponds to decision value, type factor
+* `ACC_RHS` - the rule accuracy, type numeric 
+* `SUPP_RHS` - the rule support, type numeric
 
-A p-value ('PVAL') column is not obligatory.
+A p-value (`PVAL`) column is not obligatory.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE, results='asis'}
 library(VisuNet)
@@ -61,7 +64,7 @@ vis_out <- visunet(resultsRos$main, type = 'RDF')
 ```
 
 ***
-# Run VisuNet
+# Run VisuNet {#runVisunet}
 
 VisuNet is an R package and it is implemented as  [Shiny Gadgets](https://shiny.rstudio.com/articles/gadgets.html), what enable to run VisuNet as an R function, while the rule set is an argument. 
 
@@ -80,33 +83,49 @@ vis_out <- visunet(autcon_ruleset, type = 'L')
 The available ´visunet´ parameters are:
 
 * `ruleSet`  - the set of rules in one of available structure: [Input formats](#InputFormats)
-* `type` - character string specifying the type of the input data. Two types implemented are "RDF" - the R.ROSETTA output (see  [R.Rosetta format](#RDF)), "L" - "Line by line" file format (see ['line by line' format](#Lbl)) The default is "RDF"
+* `type` - character string specifying the type of the input data. Two types implemented are:
+    * `"RDF"` - the R.ROSETTA output (see  [R.Rosetta format](#RDF))
+    * `"L"` - "Line by line" file format (see ['line by line' format](#Lbl)) The default is `"RDF"`
 * `NodeColorType` - character string specifying the color of nodes: 
-    * `"DL"` - feature discretization levels, option is available for data discretized into three levels: 1 (yellow), 2 (grey) and 3 (blue). In the case of the gene expression, data dicretization levels correpond to: 1 - undeexpressed gene, 2 - no change gene expression and 3 - overexpressed gene.
-    * `"A"` - color of nodes defined by the mean accuracy value for the node: dark orange - high accuracy value, ligth orange - low accuracy value. 
+    * `"DL"` - feature discretization levels, option is available for data discretized into three levels: 1 (yellow), 2 (grey) and 3 (blue). In the case of the gene expression, data dicretization levels correspond to: 1 - underexpressed gene, 2 - no change gene expression and 3 - overexpressed gene.
+    * `"A"` - color of nodes defined by the mean accuracy value for the node: dark orange - high accuracy value, light orange - low accuracy value. 
 
 `CustObjectNodes` and `CustObjectEdges` parameters are optional and can be used when the [rule network customization](#RNCust) is needed. 
-* `CustObjectNodes` - a list that contains customised VisuNet output for nodes. The list needs to contain two variables:
-     *`nodes` - customized VisuNet output for nodes
-     * `CustCol` - names of variables added/changed in the VisuNet output for nodes.
+
+* `CustObjectNodes` - a list that contains customized VisuNet output for nodes. The list needs to contain two variables:
+    * `nodes` - customized VisuNet output for nodes
+    * `CustCol` - names of variables added/changed in the VisuNet output for nodes.
+
 See [Nodes customization](#CustNodes) for details.
-* `CustObjectEdges` - a list that contains customised VisuNet output for edges. The list needs to contain two variables:
-     *`edges` - customized VisuNet output for edges
-     * `CustCol` - names of variables added/changed in the VisuNet output for edges. 
+
+* `CustObjectEdges` - a list that contains customized VisuNet output for edges. The list needs to contain two variables:
+    * `edges` - customized VisuNet output for edges
+    * `CustCol` - names of variables added/changed in the VisuNet output for edges. 
+
 See [Edges customization](#CustEdges) for details.
-
-
 
 
 ***
 # The interface
 
+<center>
+[ ![](images/VisuNet_interface.png) ](images/VisuNet_interface.png) 
+The VisuNet interface
+</center>
 
+VisuNet displays the rule network construct for the 10% of the rules with the highest connection value. When only one decision variable is visible in the top 10% of rules, we extend the threshold to obtain the rules for all decisions. The initial values of accuracy and support are defined for this set of rules.
+
+The rule networks parameters panel:
+
+* `min Accuracy` - the minimum accuracy value for the set of rules that create the rule network
+* `min Support` - the minimum support value for the set of rules that create the rule network
+* `Show top n nodes` - enable to show the exact number of the most significant nodes according the connection value from the current rule network, set 0 to switch off the parameters
+* `Color of nodes` - the node color schema. See  `NodeColorType` in the [Run Visunet](#runVisunet) section for details.
 
 ***
 # VisuNet output
 
-The VisuNet output is a set of lists corresponds to one decision variable plus one extra list for combined decision 'all'.
+The VisuNet output is a set of lists correspond to one decision variable plus one extra list for combined decision 'all'.
 The lists contain information required to reproduce rule networks, i.e. data frames for `nodes`, `edges` and `NodeRulesSetPerNode` - a list that shows rules for each node.
 Data frames for nodes and edges incorporate essential variables by a [visNetwork](https://github.com/datastorm-open/visNetwork) package and additional variables that describe the quality of the node/edge obtained from the rules.
 
@@ -116,7 +135,7 @@ Structure of the data frame for nodes:
 * `id` - unique node id, according to the attribute value and their value from the left-hand side of the rule set
 * `label` - the attribute variable without the '=value' part from the left-hand side of the rule set
 * `DiscState` - the attribute value
-* `color.background`  - the node color, see **color nodes section** for details
+* `color.background`  - the node color, see *node color types* for details
 * `value` - the node size
 * `color.border` - the color of node border
 * `meanAcc` - the mean accuracy value from all rules that contain the node
@@ -131,7 +150,7 @@ Structure of the data frame for edges:
 
 * `from`, `to` -  the pair of nodes that create the edge       
 * `conn`  - the connection variable obtained from the edge associated rules.
-* `connNorm`  - the connection variable normalized addcorid to the maximum connection variable in the rule network
+* `connNorm`  - the connection variable normalized according to the maximum connection variable in the rule network
 * `label2` - the edge id
 * `color` - the edge color                                                                          
 * `title` - information visible on the tooltip
@@ -174,7 +193,7 @@ To rerun VisuNet with the customized object for nodes,  you need to provide the 
 `CustObjectNodes` includes the customized object for nodes: `nodes` and a vector of column names that were changed/added to the object: `CustCol`.
 
 
-```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet. Marked genes reported in databases of autism associations (constructed for min Support=17 and min Accuracy=88%)'}
+```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet. Marked genes reported in databases of autism associations (constructed for min support=17 and min accuracy=88%)'}
 vis_out <- readRDS('data/visunet_out_nodes.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
   visLayout(randomSeed = 123) %>%
@@ -216,7 +235,7 @@ We are able to rerun VisuNet using customized object for edges by providing the 
 We can rerun VisuNet using both customized objects: `CustObjectEdges` and `CustObjectNodes`.  
 
 
-```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet. Marked genes reported in databases of autism associations and the edge direction between COX2 and MAP7  (constructed for min Support=17 and min Accuracy=88%)'}
+```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet. Marked genes reported in databases of autism associations and the edge direction between COX2 and MAP7  (constructed for min support=17 and min accuracy=88%)'}
 vis_out <- readRDS('data/visunet_out_edges.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
   visLayout(randomSeed = 123) %>%

@@ -30,11 +30,9 @@ VisuNet is an interactive tool that supports analysis of complex rule-based clas
 A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in rules, ie. features with their values occurring in the rules, and an edge connects two nodes if the corresponding conjuncts occur in the same rule. 
 
 <center>
-![](images/Rule-network_contruction2.png){width=80% }
+[ ![](images/Rule-network_contruction2.png) ](images/Rule-network_contruction2.png) 
+The rule network construction from the rule
 </center>
-```{r, echo = FALSE, message=FALSE, fig.align='center', fig.cap='The rule network construction from the rule', out.width='0.95'}
-knitr::include_graphics("images/Rule-network_contruction2.png")
-```
 
 ***
 # Installation
@@ -48,7 +46,6 @@ devtools::install_github("komorowskilab/VisuNet")
 ***
 
 # Example
-
 
 
 The gene expression data for autistic and non-autistic young males uses in the example was obtained from @RN1. The rule-based classifier was created using [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) [see @RN2].
@@ -68,7 +65,7 @@ vis_out <- visunet(autcon_ruleset, type = 'L')
 
 
 
-```{r, echo = FALSE, warning=FALSE, fig.cap='The sample rule network for the autistic and non-autistic young males classifier from VisuNet (constructed for min Support=17 and min Accuracy=88%)'}
+```{r, echo = FALSE, warning=FALSE, fig.cap='The sample rule network for the autistic and non-autistic young males classifier from VisuNet (constructed for min support=17 and min accuracy=88%)'}
 vis_out <- readRDS('data/visunet_out.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
   visLayout(randomSeed = 123) %>%
