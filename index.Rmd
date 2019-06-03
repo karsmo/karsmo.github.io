@@ -44,7 +44,6 @@ devtools::install_github("komorowskilab/VisuNet")
 ```
 
 ***
-
 # Example
 
 
