@@ -21,6 +21,7 @@ output:
 
 VisuNet is available for any rule-based classifier in supported data frame formats.
 <br>
+
 ## 'Line by line' format {#LbL}
 
 Data should be expressed as a data frame and needs to contain the following columns:
@@ -50,6 +51,7 @@ rules <- data(autcon_ruleset)
 vis_out <- visunet(rules, type = 'L')
 ```
 <br>
+
 ## R.ROSETTA data frame {#RDF}
 
 The rules data frame that is the output of R.ROSETTA can be directly run in VisuNet. See **?rosetta** from the [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) package for details.
@@ -163,6 +165,7 @@ Structure of the data frame for edges:
 
 Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limited to the existing variables in a rule network object, but we can add new ones that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
 <br>
+
 ## Nodes customization {#CustNodes}
 
 We identified 11 genes previously reported in databases of autism associations: [SFARI](https://gene.sfari.org/), [AutDB](http://autism.mindspec.org/autdb/Welcome.do) and [ASD](http://asd.princeton.edu). We would like to mark that genes as stars. The example shows how to do this:
@@ -207,6 +210,7 @@ visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>%
 ```
 
 <br>
+
 ## Edges customization {#CustEdges}
 
 Let's assume that COX2 controls MAP7 and we would like to show the edge direction on the rule network:
