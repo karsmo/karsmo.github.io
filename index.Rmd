@@ -14,7 +14,7 @@ bibliography: VisuNet_bib.bib
 link-citations: yes
 ---
 <center>
-![](images/VisuNet_logo.png){width=30% }
+![](images/VisuNet_logo2.png){width=30% }
 </center>
 
 ***
