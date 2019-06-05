@@ -26,12 +26,12 @@ VisuNet is available for any rule-based classifier in supported data frame forma
 
 Data should be expressed as a data frame and needs to contain the following columns:
 
-* `FEATURES` - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor 
-* `DECISION` - the right hand side of the rule corresponds to decision value, type factor
-* `ACC_RHS` - the rule accuracy, type numeric 
-* `SUPP_RHS` - the rule support, type numeric
+* `features` - the left-hand side of the rule corresponds to comma-separated attributes and their values, type factor 
+* `decision` - the right hand side of the rule corresponds to decision value, type factor
+* `accuracyRHS` - the rule accuracy, type numeric 
+* `supportRHS` - the rule support, type numeric
 
-A p-value (`PVAL`) column is not obligatory.
+A p-value (`pValue`) column is not obligatory.
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE, results='asis'}
 library(VisuNet)
@@ -128,7 +128,7 @@ The rule networks parameters panel:
 # VisuNet output
 
 The VisuNet output is a set of lists correspond to one decision variable plus one extra list for combined decision 'all'.
-The lists contain information required to reproduce rule networks, i.e. data frames for `nodes`, `edges` and `NodeRulesSetPerNode` - a list that shows rules for each node.
+The lists contain information required to reproduce rule networks, i.e. data frames for `nodes`, `edges` and `RulesSetPerNode` - a list that shows rules for each node.
 Data frames for nodes and edges incorporate essential variables by a [visNetwork](https://github.com/datastorm-open/visNetwork) package and additional variables that describe the quality of the node/edge obtained from the rules.
 
 
