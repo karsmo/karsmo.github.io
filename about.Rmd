@@ -82,14 +82,14 @@ data(autcon_ruleset)
 vis_out <- visunet(autcon_ruleset, type = 'L')
 ```
 
-The available ´visunet´ parameters are:
+The available `visunet` parameters are:
 
 * `ruleSet`  - the set of rules in one of available structure: [Input formats](#InputFormats)
 * `type` - character string specifying the type of the input data. Two types implemented are:
     * `"RDF"` - the R.ROSETTA output (see  [R.Rosetta format](#RDF))
     * `"L"` - "Line by line" file format (see ['line by line' format](#Lbl)) The default is `"RDF"`
 * `NodeColorType` - character string specifying the color of nodes: 
-    * `"DL"` - feature discretization levels, option is available for data discretized into three levels: 1 (yellow), 2 (grey) and 3 (blue). In the case of the gene expression, data dicretization levels correspond to: 1 - underexpressed gene, 2 - no change gene expression and 3 - overexpressed gene.
+    * `"DL"` - feature discretization levels, option is available for data discretized into three levels: 1 - `r icon::fa_circle(color = "#4CABE6", size = 2)`, 2 - `r icon::fa_circle( color = "#8E8E8E", size = 2)` and 3 - `r icon::fa_circle(color = "#E29402", size = 2)`. In the case of the gene expression, data discretization levels correspond to: 1 - under-expressed gene, 2 - no change gene expression and 3 - over-expressed gene.
     * `"A"` - color of nodes defined by the mean accuracy value for the node: dark orange - high accuracy value, light orange - low accuracy value. 
 
 `CustObjectNodes` and `CustObjectEdges` parameters are optional and can be used when the [rule network customization](#RNCust) is needed. 
@@ -129,7 +129,7 @@ The rule networks parameters panel:
 
 The VisuNet output is a set of lists correspond to one decision variable plus one extra list for combined decision 'all'.
 The lists contain information required to reproduce rule networks, i.e. data frames for `nodes`, `edges` and `RulesSetPerNode` - a list that shows rules for each node.
-Data frames for nodes and edges incorporate essential variables by a [visNetwork](https://github.com/datastorm-open/visNetwork) package and additional variables that describe the quality of the node/edge obtained from the rules.
+Data frames for `nodes` and `edges` incorporate essential variables by a [visNetwork](https://github.com/datastorm-open/visNetwork) package and additional variables that describe the quality of the node/edge obtained from the rules.
 
 
 Structure of the data frame for nodes:
@@ -163,7 +163,7 @@ Structure of the data frame for edges:
 # Rule network customization {#RNCust}
 
 
-Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limited to the existing variables in a rule network object, but we can add new ones that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
+Rule networks are constructed using a [visNetwork](https://github.com/datastorm-open/visNetwork) package that enable to add/change node and edge properties, e.g. change the color of nodes or the edge type according to the specific conditions. We are not limited to the existing variables in a rule network object, but we can add variables that are implemented in [visNetwork](https://github.com/datastorm-open/visNetwork). See **?visNodes** and **?visEdges** for a full list of available options.
 <br>
 
 ## Nodes customization {#CustNodes}
@@ -238,14 +238,13 @@ We are able to rerun VisuNet using customized object for edges by providing the 
 
 We can rerun VisuNet using both customized objects: `CustObjectEdges` and `CustObjectNodes`.  
 
-
 ```{r, echo = FALSE, warning=FALSE, fig.cap='Sample customized rule network for the autistic and non-autistic young males classifier from VisuNet. Marked genes reported in databases of autism associations and the edge direction between COX2 and MAP7  (constructed for min support=17 and min accuracy=88%)'}
 vis_out <- readRDS('data/visunet_out_edges.RDS')
 visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>% 
   visLayout(randomSeed = 123) %>%
   visInteraction(hover = TRUE, navigationButtons = TRUE) %>%
-  visOptions(selectedBy = list(variable = "group" , multiple = TRUE, main = "Select by decision", style = 'width: 200px; height: 30px;
-                                                                padding-left: 80px;
+  visOptions(selectedBy = list(variable = "group", multiple = TRUE, main = "Select by decision", style = 'width:   200px; height: 30px;
+                                padding-left: 80px;
                                font-size: 15px;
                                color: black;
                                border:none;
