@@ -209,7 +209,7 @@ aut_genes <- c('TSPOAP1', 'COX2','NCS1','RHPN1','FLRT2',
               'BAHD1','NCKAP5L','PPOX', 'NGR2',
               'ATXN8OS','DEPDC1')
 
-#create the new variable that contains nodes information for 'all' decisions
+#create the new variable that contains nodes information for the 'all' decision
 nodes_RNO <- vis_out$all$nodes
 
 #create the new vector of variables: shape. 'dot' is the default shape of nodes
@@ -221,7 +221,7 @@ nodes_RNO$shape[which(as.character(nodes_RNO$label) %in% aut_genes)] <- 'star'
 #create the node object list
 nodesL <- list(nodes = nodes_RNO,CustCol =  c('shape'))
 
-#rerun VisuNet with a new shape of nodes
+#rerun VisuNet with a new shape for nodes
 vis_out2 <- visunet(autcon_ruleset, type = 'L', CustObjectNodes = nodesL)
 ```
 
@@ -262,7 +262,7 @@ edges_RNO$arrows[which(edges_RNO$label2 == 'COX2=3-MAP7=2')] <- 'to'
 #create the edge object list
 edgesL <- list(edges = edges_RNO,CustCol =   c('arrows'))
 
-#rerun VisuNet with a new variable of edges
+#rerun VisuNet with a new variable for edges
 vis_out3 <- visunet(autcon_ruleset, type = 'L', CustObjectNodes = nodesL, CustObjectEdges = edgesL)
 ```
 
