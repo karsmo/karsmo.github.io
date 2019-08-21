@@ -3,9 +3,9 @@ output_dir: "."
 navbar:
   title: "VisuNet"
   left:
-    - text: "Home"
+    - text: "About"
       href: index.html
-    - text: "Tutorial"
+    - text: "Tutorials"
       href: about.html
   right:
     - icon: fa-github
