@@ -1,5 +1,5 @@
 ---
-title: "VisuNet: an interactive tool for rule network visualization from rule-based models in R"
+title: "VisuNet: an interactive tool for network visualization of rule-based models in R"
 output:
     html_document:
       css: style.css
@@ -19,7 +19,7 @@ link-citations: yes
 
 ***
 
-VisuNet is an interactive tool that supports analysis of complex rule-based classifiers and helps explain their structure. VisuNet can be successfully apply to any classification problems, such as, for instance, a complex health-related decsion tasks. Rule networks can clearly identify main genes (metabolites, methylation sites, etc) and their expression levels predicting complex phenotypes, e.g. cancer, autism. VisuNet is implemented in R and uses the [Shiny Gadgets](https://shiny.rstudio.com/articles/gadgets.html) attributes. The tool includes the rule network construction from rule-based models, filtration, visualization and customization. VisuNet is available on  [GitHub](https://github.com/komorowskilab/VisuNet.git).
+VisuNet is an interactive tool for structural analysis of complex rule-based classifiers. VisuNet can be applied to any classification problem and is commonly used with complex health-related decision tasks. The rule networks produced can clearly identify driving genes (metabolites, methylation sites, etc) and their expression levels. VisuNet is implemented in R and uses the  [Shiny Gadgets](https://shiny.rstudio.com/articles/gadgets.html) attributes. The tool includes construction, filtration, visualization and customization of networks from rule-based models. VisuNet is available on  [GitHub](https://github.com/komorowskilab/VisuNet.git).
 
 
 ***
@@ -27,11 +27,11 @@ VisuNet is an interactive tool that supports analysis of complex rule-based clas
 
 
 
-A VisuNet is constructed from sets of IF-THEN rules where nodes are conjuncts in rules, ie. features with their values occurring in the rules, and an edge connects two nodes if the corresponding conjuncts occur in the same rule. 
+A rule network is constructed from sets of IF-THEN rules. In the network, nodes are conjuncts of rules, ie. features, and edges connect nodes with corresponding conjuncts in rules.
 
 <center>
 [ ![](images/Rule-network_contruction2.png) ](images/Rule-network_contruction2.png) 
-The rule network construction from the rule
+The rule network resulting from a rule.
 </center>
 
 ***
@@ -47,7 +47,7 @@ devtools::install_github("komorowskilab/VisuNet")
 # Example
 
 
-The gene expression data for autistic and non-autistic young males uses in the example was obtained from @RN1. The rule-based classifier was created using [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) [see @RN2].
+This example uses gene expression data for autistic and non-autistic young males (@RN1). The rule-based classifier was created using [R.ROSETTA](https://github.com/komorowskilab/R.ROSETTA.git) [see @RN2].
 
 
 ```{r, echo = TRUE, fig.align='center', warning=FALSE, eval=FALSE}
@@ -58,7 +58,7 @@ require(VisuNet)
 data(autcon_ruleset)
 
 #Run VisuNet
-#Remember to click DONE once you finished your work with VisuNet
+#Remember to click DONE once you finish working on VisuNet
 vis_out <- visunet(autcon_ruleset, type = 'L')
 ```
 
