@@ -31,7 +31,7 @@ A rule network is constructed from sets of IF-THEN rules. In the network, nodes 
 
 <center>
 [ ![](images/Rule-network_contruction2.png) ](images/Rule-network_contruction2.png) 
-The rule network resulting from a rule.
+The rule network resulting from a rule
 </center>
 
 ***
@@ -82,7 +82,7 @@ visNetwork(nodes = vis_out$nodes, edges = vis_out$edges, width = '100%')%>%
 
 <center>
 [ ![](images/VisuNet_legend.png)](images/VisuNet_legend.png) 
-The rule network legend.
+The rule network legend
 </center>
 
 ***
